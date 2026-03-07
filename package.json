@@ -11,6 +11,7 @@
     "build": "tsc",
     "test": "jest",
     "test:coverage": "jest --coverage",
+    "demo": "npx tsx examples/demo.ts",
     "lint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\" \"examples/**/*.ts\"",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\" \"examples/**/*.ts\""
   },

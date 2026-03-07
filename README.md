@@ -1,24 +1,82 @@
-### Example: Simple Traffic Light FSM
+# fsm-mod-three
 
-This is a minimal example of a custom FSM configuration.
+---
 
-```ts
+### Installation
+
+2. **Install dependencies:**
+   ```
+   npm install
+   ```
+
+---
+
+## 🛠️ How to Run & Test
+
+### 1. Running the Demo / "API" Examples
+
+```bash
+# Runs examples/demo.ts using npx tsx
+npm run demo
+```
+
+### 2. Testing the Logic
+
+We use **Jest** for unit and integration testing. Our tests cover the generic FSM engine, the mod-three machine, and utility functions.
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage report
+npm run test:coverage
+```
+
+### 3. Building for Production
+
+To compile the TypeScript source into JavaScript (located in the `dist/` folder):
+
+```bash
+npm run build
+```
+
+---
+
+## 📖 Usage & Code Examples
+
+### ✨ The `modThree` Helper
+
+This function uses the internal FSM to compute the remainder of a binary string divided by 3.
+
+```typescript
+console.log(modThree('1101'));
+console.log(modThree('1111'));
+```
+
+### 🔧 Creating a Custom FSM
+
+You can use the generic `FiniteAutomaton` class to build any deterministic finite automaton.
+
+```typescript
 import { FiniteAutomaton, FAConfig } from 'fsm-mod-three';
 
-type LightState = 'Red' | 'Green' | 'Yellow';
-type Signal = 'timer';
+type State = 'Green' | 'Yellow' | 'Red';
+type Input = 'TIMER';
 
-const trafficLightConfig: FAConfig<LightState, Signal> = {
-  states: ['Red', 'Green', 'Yellow'],
-  alphabet: ['timer'],
-  initialState: 'Red',
-  finalStates: ['Red'], // optional: states considered "accepting"
+const config: FAConfig<State, Input> = {
+  states: ['Green', 'Yellow', 'Red'],
+  alphabet: ['TIMER'],
+  initialState: 'Green',
+  finalStates: ['Green'],
   transitions: {
-    Red: { timer: 'Green' },
-    Green: { timer: 'Yellow' },
-    Yellow: { timer: 'Red' },
+    Green: { TIMER: 'Yellow' },
+    Yellow: { TIMER: 'Red' },
+    Red: { TIMER: 'Green' },
   },
 };
 
-const trafficLightFSM = new FiniteAutomaton(trafficLightConfig);
+const trafficLight = new FiniteAutomaton(config);
+trafficLight.transition('TIMER');
 ```
+
+---
