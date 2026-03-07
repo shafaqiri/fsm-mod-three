@@ -1,31 +1,24 @@
-# fsm-mod-three
+### Example: Simple Traffic Light FSM
 
-A reusable, strongly-typed **Finite State Machine (FSM)** library in TypeScript, with a **mod-three FSM** as the reference example.
-
----
-
-## Mod-Three FSM
-
-- **States:** S0, S1, S2
-- **Alphabet:** '0', '1'
-- **Initial state:** S0
-- **Final states:** all (S0, S1, S2)
-
-**Transition table δ:**
-
-| State | '0' | '1' |
-| ----- | --- | --- |
-| S0    | S0  | S1  |
-| S1    | S2  | S0  |
-| S2    | S1  | S2  |
-
-**State → remainder mapping:**  
-S0 → 0, S1 → 1, S2 → 2
-
-**Example:**
+This is a minimal example of a custom FSM configuration.
 
 ```ts
-modThree('1101'); // 1 (13 mod 3)
-modThree('1110'); // 2 (14 mod 3)
-modThree('1111'); // 0 (15 mod 3)
+import { FiniteAutomaton, FAConfig } from 'fsm-mod-three';
+
+type LightState = 'Red' | 'Green' | 'Yellow';
+type Signal = 'timer';
+
+const trafficLightConfig: FAConfig<LightState, Signal> = {
+  states: ['Red', 'Green', 'Yellow'],
+  alphabet: ['timer'],
+  initialState: 'Red',
+  finalStates: ['Red'], // optional: states considered "accepting"
+  transitions: {
+    Red: { timer: 'Green' },
+    Green: { timer: 'Yellow' },
+    Yellow: { timer: 'Red' },
+  },
+};
+
+const trafficLightFSM = new FiniteAutomaton(trafficLightConfig);
 ```
