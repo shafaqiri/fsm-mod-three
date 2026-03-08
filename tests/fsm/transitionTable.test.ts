@@ -1,8 +1,7 @@
-import { validateConfig } from '../../src/fsm/transitionTable';
 import { InvalidConfigError } from '../../src/fsm/errors';
 import { FAConfig } from '../../src/fsm/types';
+import { validateConfig } from '../../src/fsm/validateConfig';
 
-// A minimal valid two-state, two-symbol FSM for reuse across tests
 type TwoState = 'A' | 'B';
 type BinSym = '0' | '1';
 
