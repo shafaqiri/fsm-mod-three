@@ -1,5 +1,5 @@
 import { FAConfig } from './types';
-import { validateConfig } from './transitionTable';
+import { validateConfig } from './validateConfig';
 import { InvalidSymbolError, InvalidTransitionError } from './errors';
 
 export class FiniteAutomaton<State extends string, InputSymbol extends string> {

@@ -1,28 +1,30 @@
 # fsm-mod-three
 
+Built in Node.js using TypeScript.
+
 ---
 
 ### Installation
 
-2. **Install dependencies:**
-   ```
-   npm install
-   ```
+**Install dependencies:**
+
+```bash
+npm install
+```
 
 ---
 
-## 🛠️ How to Run & Test
+## How to Run & Test
 
 ### 1. Running the Demo / "API" Examples
 
 ```bash
-# Runs examples/demo.ts using npx tsx
 npm run demo
 ```
 
 ### 2. Testing the Logic
 
-We use **Jest** for unit and integration testing. Our tests cover the generic FSM engine, the mod-three machine, and utility functions.
+**Jest** for unit and integration testing. Tests cover the generic FSM engine, the mod-three machine, and utility functions.
 
 ```bash
 # Run all tests
@@ -32,19 +34,9 @@ npm test
 npm run test:coverage
 ```
 
-### 3. Building for Production
+## Usage & Code Examples
 
-To compile the TypeScript source into JavaScript (located in the `dist/` folder):
-
-```bash
-npm run build
-```
-
----
-
-## 📖 Usage & Code Examples
-
-### ✨ The `modThree` Helper
+### The `modThree` Helper
 
 This function uses the internal FSM to compute the remainder of a binary string divided by 3.
 
@@ -53,9 +45,9 @@ console.log(modThree('1101'));
 console.log(modThree('1111'));
 ```
 
-### 🔧 Creating a Custom FSM
+### Creating a Custom FSM
 
-You can use the generic `FiniteAutomaton` class to build any deterministic finite automaton.
+Use the `FiniteAutomaton` class to build any deterministic finite automaton.
 
 ```typescript
 import { FiniteAutomaton, FAConfig } from 'fsm-mod-three';
